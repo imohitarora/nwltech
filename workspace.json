@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "projects": {
+    "fsmart": {
+      "root": "apps/fsmart",
+      "sourceRoot": "apps/fsmart/src",
+      "projectType": "application",
+      "prefix": "fsmart",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/fsmart",
+            "main": "apps/fsmart/src/main.ts",
+            "tsConfig": "apps/fsmart/tsconfig.app.json",
+            "assets": ["apps/fsmart/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/fsmart/src/environments/environment.ts",
+                  "with": "apps/fsmart/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "fsmart:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/fsmart/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/fsmart/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/nest"
+  },
+  "defaultProject": "fsmart"
+}
