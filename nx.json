@@ -25,6 +25,12 @@
   "projects": {
     "fsmart": {
       "tags": []
+    },
+    "data": {
+      "tags": []
+    },
+    "auth": {
+      "tags": []
     }
   }
 }
